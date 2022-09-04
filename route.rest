@@ -1,0 +1,21 @@
+###
+GET http://localhost:5000/api/user/abc
+
+###
+GET http://localhost:5000/api/user/random
+
+###
+GET http://localhost:5000/api/user/all
+
+###
+POST http://localhost:5000/api/user/save
+
+###
+PATCH http://localhost:5000/api/user/update/20
+
+###
+PATCH http://localhost:5000/api/user/bulk-update
+
+
+###
+DELETE http://localhost:5000/api/user/delete
