@@ -15,7 +15,7 @@ module.exports.getRandomUser = (req, res, next) => {
                 user:data[randomValue]
         } */
     const randomValue = data[parseInt(Math.random() * data.length)];
-        console.log(randomValue);
+        // console.log(randomValue);
         res.status(200).send({
             message: {
                 success: true,
@@ -26,11 +26,20 @@ module.exports.getRandomUser = (req, res, next) => {
 };
 
 
-
-
 module.exports.getAllUser = (req, res, next) => {
   // res.send('All User Found');
-  res.send(data);
+    const { limit } = req.query;
+    // console.log(limit);
+    // res.send(data.slice(0,limit));
+    res.status(200).send({
+        message: {
+            success: true,
+            message: "Limited Users",
+            // limitedUsers: (data.slice(0,limit))
+            limitedUsers: (data.slice(0, parseInt(limit)))
+    },
+});
+    
 };
 
 module.exports.saveUser = (req, res, next) => {

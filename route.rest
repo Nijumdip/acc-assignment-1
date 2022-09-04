@@ -8,6 +8,9 @@ GET http://localhost:5000/api/user/random
 GET http://localhost:5000/api/user/all
 
 ###
+GET http://localhost:5000/api/user/all?limit=3
+
+###
 POST http://localhost:5000/api/user/save
 
 ###
