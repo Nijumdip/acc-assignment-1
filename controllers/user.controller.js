@@ -84,7 +84,25 @@ module.exports.saveUser = (req, res, next) => {
 
 module.exports.updateRandomUser = (req, res, next) => {
   // res.send('Update A Random User')
-  res.send(req.params.id);
+  // res.send(req.params.id);
+  const updatedData = req.body;
+  const { id } = req.params;
+  // const filter = { _id: id };
+  const newData = data.find(d => d.id == id);
+  // console.log(updatedUser);
+  newData.id = id;
+  newData.name = updatedData.name;
+  newData.gender = updatedData.gender;
+  newData.contact= updatedData.contact;
+  newData.address= updatedData.address;
+  newData.photoUrl = updatedData.photoUrl;
+  
+  console.log(newData);
+  // const index = data.indexOf(userToBeUpdated);
+  // const updatedUser = { ...userToBeUpdated, ...update };
+  // data[index] = updatedUser;
+
+  res.send(newData)
 };
 
 module.exports.updateMultipleUser = (req, res, next) => {
