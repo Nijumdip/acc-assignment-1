@@ -38,14 +38,13 @@ module.exports.getAllUser = (req, res, next) => {
         limitedUsers: data.slice(0, parseInt(limit)),
       },
     });
-  }
-  else {
+  } else {
     res.status(200).send({
       message: {
         success: true,
         message: "All Users Found",
         // limitedUsers: (data.slice(0,limit))
-        users: data
+        users: data,
       },
     });
   }
@@ -60,27 +59,24 @@ module.exports.saveUser = (req, res, next) => {
   // console.log(randomId);
   // data.push({id:randomId, ...req.body});
   data.push({ id: data.length + 1, ...req.body });
-  fs.writeFileSync("userData.json", JSON.stringify(data))
-  if (req.body !== gender, name, contact, address, photoUrl) {
+  fs.writeFileSync("userData.json", JSON.stringify(data));
+  if ((req.body !== gender, name, contact, address, photoUrl)) {
     res.status(500).send({
       message: {
         success: false,
         message: "Please provide a valid data",
       },
     });
-  }
-  else {
+  } else {
     res.status(200).send({
       message: {
         success: true,
         message: "User added successfully",
-        users:data
+        users: data,
       },
     });
   }
 };
-
-
 
 module.exports.updateRandomUser = (req, res, next) => {
   // res.send('Update A Random User')
@@ -88,21 +84,21 @@ module.exports.updateRandomUser = (req, res, next) => {
   const updatedData = req.body;
   const { id } = req.params;
   // const filter = { _id: id };
-  const newData = data.find(d => d.id == id);
-  // console.log(updatedUser);
+  const newData = data.find((d) => d.id == id);
   newData.id = id;
   newData.name = updatedData.name;
   newData.gender = updatedData.gender;
-  newData.contact= updatedData.contact;
-  newData.address= updatedData.address;
+  newData.contact = updatedData.contact;
+  newData.address = updatedData.address;
   newData.photoUrl = updatedData.photoUrl;
-  
-  console.log(newData);
-  // const index = data.indexOf(userToBeUpdated);
-  // const updatedUser = { ...userToBeUpdated, ...update };
-  // data[index] = updatedUser;
-
-  res.send(newData)
+  // console.log(newData);
+  res.status(200).send({
+    message: {
+      success: true,
+      message: "Update A Random User.",
+      user: newData,
+    },
+  });
 };
 
 module.exports.updateMultipleUser = (req, res, next) => {
@@ -110,5 +106,28 @@ module.exports.updateMultipleUser = (req, res, next) => {
 };
 
 module.exports.deleteUser = (req, res, next) => {
-  res.send("Delete A User");
+  // res.send("Delete A User");
+  const { id } = req.params;
+
+/*   const deleteId = data.find((d) => d.id === id);
+  if (!deleteId) {
+    res.status(404).send({
+      message: {
+        success: false,
+        message: "Oops ! sry ! This User id does not exist.",
+      },
+    });
+  } */
+
+  const deleteData = data.filter(d => d.id !== Number(id));
+  fs.writeFileSync("userData.json", JSON.stringify(deleteData));
+  res.status(200).send({
+    message: {
+      success: true,
+      message: "Delete A Random User.",
+      user: deleteData,
+    },
+  })
+
+  
 };

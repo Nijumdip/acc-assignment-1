@@ -29,7 +29,7 @@ app.all("*", (req, res) => {
       "POST /api/user/save": "Save a random user from the .json file.",
       "PATCH /api/user/update": "Update a random user from the .json file.",
       "PATCH /api/user/bulk-update": "update multiple users from the .json file.",
-      "PATCH /api/user/delete": "Delete a user from the .json file using its id.",
+      "PATCH /api/user/delete/:id": "Delete a user from the .json file using its id.",
     },
   })
 })

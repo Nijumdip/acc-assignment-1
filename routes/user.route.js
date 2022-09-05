@@ -13,7 +13,7 @@ router.route('/update/:id').patch(userControllers.updateRandomUser);
 
 router.route('/bulk-update').patch(userControllers.updateMultipleUser);
 
-router.route('/delete').delete(userControllers.deleteUser); 
+router.route('/delete/:id').delete(userControllers.deleteUser); 
 
 
 
