@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 // const data = fs.readFileSync('userData.json');
-const data = JSON.parse(fs.readFileSync(path.join(process.cwd(),"userData.json")));
+const data = JSON.parse(fs.readFileSync("userData.json"));
 
 module.exports.getRandomUser = (req, res, next) => {
   // res.send("Random User Found");

@@ -64,3 +64,10 @@ You are required to submit the following:
 
 Your GitHub repository link containing the API code.
 The live link of the API deployed in Heroku/any other hosting platform.
+
+
+GitHub repository link : 
+https://github.com/Nijumdip/acc-assignment-1
+
+
+live link : 
