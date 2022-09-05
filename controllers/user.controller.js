@@ -7,19 +7,16 @@ module.exports.getRandomUser = (req, res, next) => {
   /*  const randomValue = Math.floor(Math.random() * data.length)
         console.log(randomValue);
         res.status(200).json({
-            message: {
-                success: true,
-                message: "Random user found.",
-                user:data[randomValue]
-        } */
+            success: true,
+            message: "Random user found.",
+            user:data[randomValue]
+        */
   const randomValue = data[parseInt(Math.random() * data.length)];
   // console.log(randomValue);
   res.status(200).send({
-    message: {
-      success: true,
-      message: "Random user found.",
-      user: randomValue,
-    },
+    success: true,
+    message: "Random user found.",
+    user: randomValue,
   });
 };
 
@@ -31,21 +28,18 @@ module.exports.getAllUser = (req, res, next) => {
   // res.send(data.slice(0, parseInt(limit)));
   if (limit) {
     res.status(200).send({
-      message: {
-        success: true,
-        message: "Limited Users",
-        // limitedUsers: (data.slice(0,limit))
-        limitedUsers: data.slice(0, parseInt(limit)),
-      },
+      success: true,
+      message: "Limited Users",
+      // limitedUsers: (data.slice(0,limit))
+      limitedUsers: data.slice(0, parseInt(limit))
     });
-  } else {
+  }
+  else {
     res.status(200).send({
-      message: {
-        success: true,
-        message: "All Users Found",
-        // limitedUsers: (data.slice(0,limit))
-        users: data,
-      },
+      success: true,
+      message: "All Users Found",
+      // limitedUsers: (data.slice(0,limit))
+      users: data,
     });
   }
 };
@@ -60,44 +54,30 @@ module.exports.saveUser = (req, res, next) => {
   // data.push({id:randomId, ...req.body});
   data.push({ id: data.length + 1, ...req.body });
   fs.writeFileSync("userData.json", JSON.stringify(data));
-  if ((req.body !== gender, name, contact, address, photoUrl)) {
-    res.status(500).send({
-      message: {
-        success: false,
-        message: "Please provide a valid data",
-      },
-    });
-  } else {
-    res.status(200).send({
-      message: {
-        success: true,
-        message: "User added successfully",
-        users: data,
-      },
-    });
-  }
+  res.status(200).send({
+    success: true,
+    message: "User added successfully",
+    users: data
+  });
 };
 
 module.exports.updateRandomUser = (req, res, next) => {
-  // res.send('Update A Random User')
-  // res.send(req.params.id);
-  const updatedData = req.body;
+  // const updatedData = req.body;
   const { id } = req.params;
   // const filter = { _id: id };
   const newData = data.find((d) => d.id == id);
   newData.id = id;
-  newData.name = updatedData.name;
-  newData.gender = updatedData.gender;
-  newData.contact = updatedData.contact;
-  newData.address = updatedData.address;
-  newData.photoUrl = updatedData.photoUrl;
+  newData.name = req.body.name;
+  newData.gender = req.body.gender;
+  newData.contact = req.body.contact;
+  newData.address = req.body.address;
+  newData.photoUrl = req.body.photoUrl;
+  // fs.writeFileSync("userData.json", JSON.stringify(newData));
   // console.log(newData);
   res.status(200).send({
-    message: {
-      success: true,
-      message: "Update A Random User.",
-      user: newData,
-    },
+    success: true,
+    message: "Update A Random User.",
+    user: newData,
   });
 };
 
@@ -108,17 +88,6 @@ module.exports.updateMultipleUser = (req, res, next) => {
 module.exports.deleteUser = (req, res, next) => {
   // res.send("Delete A User");
   const { id } = req.params;
-
-/*   const deleteId = data.find((d) => d.id === id);
-  if (!deleteId) {
-    res.status(404).send({
-      message: {
-        success: false,
-        message: "Oops ! sry ! This User id does not exist.",
-      },
-    });
-  } */
-
   const deleteData = data.filter(d => d.id !== Number(id));
   fs.writeFileSync("userData.json", JSON.stringify(deleteData));
   res.status(200).send({
@@ -128,6 +97,4 @@ module.exports.deleteUser = (req, res, next) => {
       user: deleteData,
     },
   })
-
-  
 };
