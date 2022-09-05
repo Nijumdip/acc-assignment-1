@@ -62,6 +62,20 @@ module.exports.saveUser = (req, res, next) => {
   });
 };
 
+module.exports.deleteUser = (req, res, next) => {
+  // res.send("Delete A User");
+  const { id } = req.params;
+  const deleteData = data.filter(d => d.id !== Number(id));
+  fs.writeFileSync("userData.json", JSON.stringify(deleteData));
+  res.status(200).send({
+    message: {
+      success: true,
+      message: "Delete A Random User.",
+      user: deleteData,
+    },
+  })
+};
+
 module.exports.updateRandomUser = (req, res, next) => {
   // const updatedData = req.body;
   const { id } = req.params;
@@ -86,16 +100,4 @@ module.exports.updateMultipleUser = (req, res, next) => {
   res.send("Update A Multiple User");
 };
 
-module.exports.deleteUser = (req, res, next) => {
-  // res.send("Delete A User");
-  const { id } = req.params;
-  const deleteData = data.filter(d => d.id !== Number(id));
-  fs.writeFileSync("userData.json", JSON.stringify(deleteData));
-  res.status(200).send({
-    message: {
-      success: true,
-      message: "Delete A Random User.",
-      user: deleteData,
-    },
-  })
-};
+

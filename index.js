@@ -26,10 +26,12 @@ app.all("*", (req, res) => {
     Doc: {
       "GET /api/user/random": "Get a random user from the .json file.",
       "GET /api/user/all": "list of all random users from the .json file.",
+      "GET /api/user/all?limit=3": "limited users from the .json file.",
       "POST /api/user/save": "Save a random user from the .json file.",
+      "PATCH /api/user/delete/:id": "Delete a user from the .json file using its id.",
       "PATCH /api/user/update": "Update a random user from the .json file.",
       "PATCH /api/user/bulk-update": "update multiple users from the .json file.",
-      "PATCH /api/user/delete/:id": "Delete a user from the .json file using its id.",
+      
     },
   })
 })

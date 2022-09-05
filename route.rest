@@ -14,11 +14,12 @@ GET http://localhost:5000/api/user/all?limit=3
 POST http://localhost:5000/api/user/save
 
 ###
-PATCH http://localhost:5000/api/user/update/11
+DELETE http://localhost:5000/api/user/delete/9
+
+###
+PATCH http://localhost:5000/api/user/update/9
 
 ###
 PATCH http://localhost:5000/api/user/bulk-update
 
 
-###
-DELETE http://localhost:5000/api/user/delete/9
